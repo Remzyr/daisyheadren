@@ -5,7 +5,7 @@ function love.conf(t)
 
     t.console = false
 
-    t.window.title = "Daisy Head Ren"
+    t.window.title = "DAISY HEAD REN"
 
     t.window.resizable = true
     t.window.vsync = 1
