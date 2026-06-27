@@ -7,20 +7,32 @@ local MainMenu = {}
 local logo
 local title
 local theme
+local daisyroute = false -- daisy route check, this is an important switch to the game, please don't touch it unless moving to a better place
 
 function MainMenu:enter()
-    Trippy = Shader.new("daisy/shaders/trippy.frag")
-    Trippy:send("color_freq", 0.05)
-    Trippy:send("color_speed", -0.1)
-    Trippy:send("color_speed", -0.1)
-
+    theme = love.audio.newSource("daisy/audio/mainmenu.mp3", "stream")
+    local font = love.graphics.newFont("daisy/fonts/daisy.ttf", 32)
+    --Trippy = Shader.new("daisy/shaders/trippy.frag")
+   -- Trippy:send("color_freq", 0.05)
+--     Trippy:send("color_speed", -0.1)
+   -- Trippy:send("color_speed", -0.1)
+    --if(daisyroute==true) then
+       -- theme:setPitch(0.2)
+     --   logo = Sprite.new(0, 0, "daisy/menu/_/daisyroute.png")
+      --  logo:setScale(0.5)
+      --  logo:screenCenter("xy")
+     --   love.graphics.clear(0.05, 0.05, 0.1, 1)
+     --   theme:setVolume(0.8)
+     --   title = Text.new(0, 0, "PLAY GAME", font)
+   -- else
+   
     logo = Sprite.new(0, 0, "daisy/menu/Logo.png")
     logo:setScale(0.5)
     logo:screenCenter("xy")
-    theme = love.audio.newSource("daisy/audio/mainmenu.mp3", "stream")
     theme:setVolume(0.5)
-    local font = love.graphics.newFont("daisy/fonts/daisy.ttf", 32)
     title = Text.new(0, 0, "PLAY GAME", font)
+
+   -- end
 end
 
 function MainMenu:update(dt)
@@ -31,8 +43,11 @@ function MainMenu:update(dt)
     logo.y = sh * 0.3
     logo:update(dt)
 
-    
-    title:shakeWave(t, 1.5, 5)
+    --if (daisyroute==true) then 
+    --title:shakeWave(t, 5, 0.2)
+   -- else 
+   -- title:shakeWave(t, 1.5, 5)
+   -- end
 
     local textW = title.font:getWidth(title.text)
     title.x = (sw - textW) / 2
@@ -47,7 +62,7 @@ function MainMenu:update(dt)
 end
 
 function MainMenu:draw()
-    Trippy:apply()
+    --Trippy:apply()
     theme:play()
     love.graphics.clear(0.05, 0.05, 0.1, 1)
     logo:draw()
