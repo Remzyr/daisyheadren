@@ -51,6 +51,15 @@ function love.load()
         fullscreen = false,
         volume = 100,
     }
+    Save.data.checks = Save.data.checks or {
+        daisyroute = false,
+    }
+
+    --[[
+    if Save.get(checks).daisyroute == false then 
+       print("tee ess")
+    end
+    ]]--
 
     registerStates("src/states")
     Gamestate.switch("mainmenu")
