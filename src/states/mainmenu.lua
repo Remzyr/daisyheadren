@@ -7,10 +7,11 @@ local Trippy
 local canvas
 local MainMenu = {}
 local logo
+local bg
 local title
 local theme
 local daisyroute = false -- daisy route check, important switch, don't touch unless moving to a better place
-
+local confirm
 function MainMenu:enter()
     theme = Sound.music("mainmenu")
     local font = Paths.font("daisy", 32)
@@ -28,7 +29,9 @@ function MainMenu:enter()
     else
         theme:setVolume(0.5)
         logo = Sprite.new(0, 0, "assets/menu/Logo.png")
+        bg = Sprite.new(0, -150, "assets/menu/bg.png")
         logo:setScale(0.7)
+        bg:setScale(0.8)
         logo:screenCenter("xy")
     end
 
@@ -45,8 +48,9 @@ function MainMenu:update(dt)
     logo:screenCenter("x")
     logo.y = sh * 0.3
     logo:update(dt)
+    bg:update(dt)
 
-    title:shakeWave(t, 1.5, 5)
+    --title:shakeWave(t, 1.5, 5)
 
     local textW = title.font:getWidth(title.text)
     title.x = (sw - textW) / 2
@@ -54,6 +58,9 @@ function MainMenu:update(dt)
 
     if Keyboard.justPressed("accept") then
         print("Switching to game...")
+        Gamestate.switch("gamestate")
+        confirm = Sound.play("confirm")
+        theme:setVolume(0)
     end
 
     Keyboard.update()
@@ -63,9 +70,12 @@ function MainMenu:draw()
     theme:play()
 
     love.graphics.setCanvas(canvas)
+    
     love.graphics.clear(0.05, 0.05, 0.1, 1)
+    bg:draw()
     logo:draw()
     title:draw()
+    
     love.graphics.setCanvas()
 
     love.graphics.setShader(Trippy)

@@ -56,7 +56,7 @@ function love.load()
     }
 
     --[[
-    if Save.get(checks).daisyroute == false then 
+    if Save.get(checks).daisyroute == true then 
        print("tee ess")
     end
     ]]--
