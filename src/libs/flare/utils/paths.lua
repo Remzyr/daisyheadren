@@ -1,3 +1,4 @@
+---@class Paths
 local Assets = require("data.assets")
 
 local Paths = {}
@@ -103,7 +104,7 @@ function Paths.font(key, size)
 end
 
 function Paths.shader(key)
-    return Assets.shader(getPath("shaders", key, Paths.extensions.shader))
+    return getPath("shaders", key, Paths.extensions.shader)
 end
 
 function Paths.data(key)

@@ -25,6 +25,8 @@ Gamestate = flare.gamestate
 Save = flare.save
 ---@type Keyboard
 Keyboard = flare.keyboard
+---@type Paths
+Paths = flare.paths
 local function registerStates(dir, prefix)
     prefix = prefix or ""
     local items = love.filesystem.getDirectoryItems(dir)
