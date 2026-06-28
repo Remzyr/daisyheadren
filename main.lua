@@ -41,7 +41,7 @@ local function registerStates(dir, prefix)
     end
 end
 
-function love.load()
+function love.load() 
     Save.init("daisyheadren")
     Save.load()
     -- u do whatever u want
